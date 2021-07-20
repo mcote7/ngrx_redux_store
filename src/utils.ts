@@ -6,8 +6,8 @@ export function renderTodos(collection) {
   todoList.innerHTML = '';
   for (const item of collection) {
     todoList.innerHTML += `
-    <li>
-	      ${item.label}
+      <li>
+        ${item.label}
         <button type="button" data-todo='${JSON.stringify(item)}'>
           Delete
         </button>
