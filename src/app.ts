@@ -43,3 +43,5 @@ todoList.addEventListener('click', function(event) {
 });
 
 store.subscribe(state => console.log('STATE :::', state));
+
+// typescript store 
