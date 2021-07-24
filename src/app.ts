@@ -25,3 +25,4 @@ todoList.addEventListener('click', function(event) {
     console.log(target);
   }
 });
+
