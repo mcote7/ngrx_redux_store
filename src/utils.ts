@@ -1,7 +1,7 @@
 const span = document.querySelector('span') as HTMLSpanElement;
 const todoList = document.querySelector('.todos') as HTMLLIElement;
 
-export function renderTodos(collection) {
+export function renderTodos(collection: any) {
   span.innerHTML = collection.length;
   todoList.innerHTML = '';
   for (const item of collection) {
@@ -14,4 +14,4 @@ export function renderTodos(collection) {
       </li>
     `;
   }
-}
+};
