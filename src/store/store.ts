@@ -8,6 +8,7 @@ export class Store {
   
   
   constructor(reducers = {}, initialState = {}) {
+    this.subscribers = [];
     this.reducers = reducers;
     this.state = this.reduce(initialState, {});
   }
@@ -16,9 +17,18 @@ export class Store {
     return this.state;
   }
 
+  subscribe(fn) {
+    this.subscribers = [...this.subscribers, fn];
+    this.notify();
+  }
+
   dispatch(action) {
     this.state = this.reduce(this.state, action);
     // console.log(this.state);
+  }
+
+  private notify() {
+    this.subscribers.forEach(fn => fn(this.value));
   }
 
   private reduce(state, action) {
