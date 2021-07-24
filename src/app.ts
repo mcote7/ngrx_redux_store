@@ -1,5 +1,4 @@
-import * as fromStore from './store/store';
-
+import * as fromStore from './store/index';
 import { renderTodos } from './utils';
 
 const input = document.querySelector('input') as HTMLInputElement;
@@ -7,9 +6,11 @@ const button = document.querySelector('button') as HTMLButtonElement;
 const destroy = document.querySelector('.unsubscribe') as HTMLButtonElement;
 const todoList = document.querySelector('.todos') as HTMLLIElement;
 
-const store = new fromStore.Store({}, {
-  todos: [{ label: 'Eat Wings', complete: false }],
-});
+const reducers = {
+  todos: fromStore.reducer
+};
+
+const store = new fromStore.Store(reducers);
 
 button.addEventListener(
   'click',
@@ -20,8 +21,10 @@ button.addEventListener(
     
     store.dispatch({
       type: 'ADD_TODO',
-      payload //:payload
+      payload // payload: payload
     });
+    
+    console.log(store.value);
     
     input.value = '';
   },

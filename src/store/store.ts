@@ -8,7 +8,8 @@ export class Store {
   
   
   constructor(reducers = {}, initialState = {}) {
-    this.state = initialState;
+    this.reducers = reducers;
+    this.state = this.reduce(initialState, {});
   }
   
   get value() {
@@ -16,10 +17,17 @@ export class Store {
   }
 
   dispatch(action) {
-    this.state = {
-      ...this.state,
-      todos: [...this.state.todos, action.payload]
-    };
-    console.log(this.state);
+    this.state = this.reduce(this.state, action);
+    // console.log(this.state);
+  }
+
+  private reduce(state, action) {
+    const newState = {};
+    
+    for(const prop in this.reducers) {
+      // newState.todos = this.reducers.todos()
+      newState[prop] = this.reducers[prop](state[prop], action);
+    }
+    return newState;
   }
 }
