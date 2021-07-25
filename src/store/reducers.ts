@@ -9,8 +9,8 @@ export const initialState = {
 export function reducer(
   state = initialState,
   action: { type: string; payload: any } ) {
+  
   switch(action.type) {
-    
     case fromActions.ADD_TODO: {
       const todo = action.payload;
       const data = [...state.data, todo];
@@ -19,7 +19,6 @@ export function reducer(
         data // data: data
       };
     }
-    
     case fromActions.REMOVE_TODO: {
       const todoX = action.payload.label;
       const data = state.data.filter(todo => todo.label !== todoX);
